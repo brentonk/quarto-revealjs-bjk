@@ -338,5 +338,10 @@ $selection-bg: #26351c !default;
 
 .sourceCode {
   font-family: 'Iosevka Web', monospace;
-  font-size: 22px;
+  font-size: 20px;
+}
+
+.cell-output-stdout pre code {
+  font-family: 'Iosevka Web', monospace;
+  font-size: 20px;
 }
