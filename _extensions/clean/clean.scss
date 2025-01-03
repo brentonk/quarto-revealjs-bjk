@@ -341,3 +341,22 @@ $selection-bg: #26351c !default;
   font-variant-ligatures: none;
   font-size: 20px;
 }
+
+.reveal div.sourceCode.cell-code {
+  margin-top: 1.25em;
+}
+
+.reveal div.cell-output.cell-output-stdout {
+  margin-top: 0.4em;
+}
+
+// Callout blocks
+
+.reveal div.callout.callout-style-default {
+  font-size: 80%;
+  margin-top: 2em;
+}
+
+.reveal div.callout.callout-style-default .callout-title {
+  font-size: 115%;
+}
