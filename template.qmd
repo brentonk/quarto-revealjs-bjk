@@ -3,7 +3,6 @@ title: A title
 subtitle: A subtitle
 format:
   clean-revealjs:
-    self-contained: true
     echo: true
 html-math-method:
   method: mathjax
@@ -103,3 +102,19 @@ df_test |>
 ## Can go 93 chars without wrapping
 --------10--------20--------30--------40--------50--------60--------70--------80--------90---
 ```
+
+## R code with output
+
+Here's some code and output
+
+```{r}
+getwd()
+```
+
+Let's check the spacing afterward too
+
+:::{.callout-note}
+## I'm a callout note!
+
+Isn't that cool?
+:::
