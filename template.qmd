@@ -1,7 +1,10 @@
 ---
 title: A title
 subtitle: A subtitle
-format: clean-revealjs
+format:
+  clean-revealjs:
+    self-contained: true
+    echo: true
 html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
@@ -10,7 +13,6 @@ author:
     email: brenton.kenkel@gmail.com
     affiliations: Vanderbilt University
 date: last-modified
-self-contained: true
 ---
 
 ## Example slide
