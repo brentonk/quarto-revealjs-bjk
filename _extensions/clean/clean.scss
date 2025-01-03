@@ -336,12 +336,8 @@ $selection-bg: #26351c !default;
   font-variant-ligatures: none;
 }
 
-.sourceCode {
+.reveal pre code, .sourceCode, .cell-output-stdout pre code {
   font-family: 'Iosevka Web', monospace;
-  font-size: 20px;
-}
-
-.cell-output-stdout pre code {
-  font-family: 'Iosevka Web', monospace;
+  font-variant-ligatures: none;
   font-size: 20px;
 }
