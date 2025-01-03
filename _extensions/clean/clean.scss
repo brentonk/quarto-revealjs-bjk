@@ -336,7 +336,7 @@ $selection-bg: #26351c !default;
   font-variant-ligatures: none;
 }
 
-.reveal pre code, .sourceCode, .cell-output-stdout pre code {
+.reveal pre code, .reveal pre.sourceCode code, .cell-output-stdout pre code {
   font-family: 'Iosevka Web', monospace;
   font-variant-ligatures: none;
   font-size: 20px;
@@ -357,7 +357,7 @@ $selection-bg: #26351c !default;
 // Callout blocks
 
 .reveal div.callout.callout-style-default {
-  font-size: 80%;
+  font-size: 80% !important;
   margin-top: 2em;
 }
 

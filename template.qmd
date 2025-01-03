@@ -3,7 +3,6 @@ title: A title
 subtitle: "PSCI 2301: Quantitative Political Science II"
 format:
   clean-revealjs:
-    self-contained: true
     echo: true
 html-math-method:
   method: mathjax
