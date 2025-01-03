@@ -18,6 +18,15 @@ date: last-modified
 
 ## Recap
 
+```{r}
+#| echo: false
+#| message: false
+library("tidyverse")
+
+## Only output five tibble rows by default
+options(tibble.print_min = 5)
+```
+
 ## Today's agenda
 
 
