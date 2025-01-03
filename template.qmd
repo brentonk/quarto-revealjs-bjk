@@ -1,12 +1,12 @@
 ---
 title: A title
-subtitle: A subtitle
+subtitle: "PSCI 2301: Quantitative Political Science II"
 format: clean-revealjs
 html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 author:
-  - name: Brenton Kenkel
+  - name: "Prof. Brenton Kenkel"
     email: brenton.kenkel@gmail.com
     affiliations: Vanderbilt University
 date: last-modified
