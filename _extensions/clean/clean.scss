@@ -342,6 +342,10 @@ $selection-bg: #26351c !default;
   font-size: 20px;
 }
 
+.reveal .cell-output.cell-output-stdout pre code {
+  line-height: 25px;
+}
+
 .reveal div.sourceCode.cell-code {
   margin-top: 1.25em;
 }
