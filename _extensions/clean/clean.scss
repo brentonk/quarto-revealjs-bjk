@@ -354,6 +354,11 @@ $selection-bg: #26351c !default;
   margin-top: 0.4em;
 }
 
+// For when .output-location = "column"
+.reveal .column div.cell-output.cell-output-stdout {
+  margin-top: 1.25em;
+}
+
 // Callout blocks
 .reveal div.callout.callout-style-default {
   font-size: 80% !important;
