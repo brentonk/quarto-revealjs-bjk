@@ -1,6 +1,6 @@
 ---
 title: A title
-subtitle: "PSCI 2301: Quantitative Political Science II"
+subtitle: "PSCI 2227: War and State Development"
 format:
   clean-revealjs:
     echo: true
@@ -16,15 +16,6 @@ date: last-modified
 
 
 ## Recap
-
-```{r}
-#| echo: false
-#| message: false
-library("tidyverse")
-
-## Only output five tibble rows by default
-options(tibble.print_min = 5)
-```
 
 ## Today's agenda
 
