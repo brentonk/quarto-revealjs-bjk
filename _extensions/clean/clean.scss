@@ -387,7 +387,8 @@ div.example > p:before {
 }
 
 // Image captions
-.reveal figure figcaption {
+.reveal figure figcaption,
+.reveal p.caption {
   color: #666666;
   text-align: center;
   margin-top: -0.5em;
