@@ -385,3 +385,10 @@ div.example > p:before {
   margin-left: -1em;
   margin-right: 0.5em;
 }
+
+// Image captions
+.reveal figure figcaption {
+  color: #666666;
+  text-align: center;
+  margin-top: -0.5em;
+}
