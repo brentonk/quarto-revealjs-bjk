@@ -64,18 +64,25 @@ $selection-bg: #26351c !default;
     color: $body-color;
     font-size: 1.6em;
     font-weight: 800;
+    margin-bottom: 0;
   }
 
   .subtitle {
     color: $accent;
     font-style: italic;
     margin-top: 0em;
+    margin-bottom: 0;
     font-weight: normal;
     // font-weight: lighter;
   }
 
+  .date {
+    color: $body-color;
+    font-style: normal;
+    font-weight: 300;
+  }
+
   .institute,
-  .quarto-title-affiliation,
   .quarto-title-author-email {
     font-style: italic;
     // font-size: 80%;
@@ -85,11 +92,13 @@ $selection-bg: #26351c !default;
   .author,
   .quarto-title-author-name {
     color: $body-color;
+    font-weight: 300;
   }
 
   .quarto-title-authors {
     display: flex;
     justify-content: left;
+    margin-top: 1.25em;
 
     .quarto-title-author {
       padding-left: 0em;
