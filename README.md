@@ -49,7 +49,7 @@ date: last-modified
 | `.etable` | fits a regression-table image to the slide |
 | `.columns3070` etc. | column-width presets for `output-location: column` (`3070`, `7030`, `4060`, `6040`) |
 
-R figures are rendered with transparent backgrounds so plots sit directly on the paper-toned slide.
+R figures sit directly on the paper-toned slide: the graphics device renders with a transparent background, and computational figure output is additionally blended onto the slide (`mix-blend-mode: multiply`) so white plot backgrounds from any ggplot theme disappear. Markdown-included images (photos, scans) keep their true colors.
 
 ## Migrating decks from v1 of this theme
 

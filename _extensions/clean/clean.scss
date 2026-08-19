@@ -494,6 +494,25 @@ div.example {
   margin-top: 0.4em;
 }
 
+// Blend slide images onto the paper ground: white x paper = paper, so
+// white plot boxes (e.g. ggplot's default theme_gray) and white scan
+// margins disappear. The transparent dev.args in _extension.yml only
+// helps R themes with a blank plot.background; this covers the rest.
+// Non-white image content is darkened imperceptibly (~2%).
+//
+// The section carries the paper color itself because reveal's
+// transformed .slides element isolates the stacking context — an img
+// cannot blend with the page background, only with its own ancestors.
+// Sections with custom reveal backgrounds are excluded so those still
+// show through; their images simply don't blend (status quo).
+.reveal .slides section:not([data-background-color]):not([data-background-image]) {
+  background-color: $paper;
+}
+
+.reveal .slides img {
+  mix-blend-mode: multiply;
+}
+
 // ---------------------------------------------------------------------------
 // 13 · Layout helpers
 //
