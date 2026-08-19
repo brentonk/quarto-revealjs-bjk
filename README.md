@@ -1,48 +1,77 @@
-# Quarto clean theme
+# quarto-revealjs-bjk
 
-A minimalist and elegant presentation theme for Quarto Reveal.js, inspired by Kyle's
-[LaTex template](https://raw.githack.com/kylebutts/templates/master/latex-slides/slides.pdf).
+Brenton Kenkel's [Quarto reveal.js](https://quarto.org/docs/presentations/revealjs/) theme for academic slides, forked from Grant McDermott's excellent [quarto-revealjs-clean](https://github.com/grantmcdermott/quarto-revealjs-clean).
 
-Click the screenshot below to be taken to a
-[live demo](https://grantmcdermott.com/quarto-revealjs-clean-demo/template.html).
+Where upstream is a light grotesque theme, this fork is an editorial serif design:
 
-[![](clean-title.png "live demo")](https://grantmcdermott.com/quarto-revealjs-clean-demo/template.html)
+- **Type**: [Source Serif](https://github.com/adobe-fonts/source-serif) for display (deck and slide titles), [Source Sans](https://github.com/adobe-fonts/source-sans) for text, [Iosevka](https://github.com/be5invis/Iosevka) for code (narrow enough for ~93-character lines, ligatures disabled)
+- **Math**: MathJax v4 with [STIX Two](https://www.stixfonts.org/), so equations look journal-grade next to the serif headers
+- **Color**: warm paper ground, near-black ink, deep burgundy accent for emphasis, muted slate for structure
+- **Self-hosted fonts**: all faces ship as subset woff2 files inside the extension — decks render identically with no network connection and make zero third-party font requests (MathJax and its font still load from CDN)
 
-## Use
+## Installation
 
-Depending on your use case, here are some [Quarto CLI](https://quarto.org/)
-commands to get started.
-
-If you would like to add the **clean** theme to an existing directory:
+Add the theme to an existing project:
 
 ```bash
-quarto install extension grantmcdermott/quarto-revealjs-clean
+quarto install extension brentonk/quarto-revealjs-bjk
 ```
 
-Alternatively, you can use a
-[Quarto template](https://quarto.org/docs/extensions/starter-templates.html)
-that bundles the **clean** theme plus a .qmd starter document. This is a better
-option if you are starting a new project from scratch, since it will automatically
-create a new directory with all of the necessary scaffolding in one go. We provide
-two template options.
-
-- Bare bones template
+Or start a new deck from the template:
 
 ```bash
-quarto use template grantmcdermott/quarto-revealjs-clean
+quarto use template brentonk/quarto-revealjs-bjk
 ```
 
-- Full demo template
+Then use the format:
+
+```yaml
+title: A title
+subtitle: A subtitle
+format: clean-revealjs
+author:
+  - name: Your Name
+    email: you@example.com
+    affiliations: Your Institution
+date: last-modified
+```
+
+## Theme classes
+
+| Class | Effect |
+|---|---|
+| `.alert` | burgundy bold emphasis: `[text]{.alert}` |
+| `.fg` | custom foreground color: `[text]{.fg style="--col: #123456"}` |
+| `.bg` | custom background chip: `[text]{.bg style="--col: #123456"}` |
+| `.button` | Beamer-style button link: `[[Appendix]{.button}](#sec-appendix)` |
+| `.example` | worked-example block; each paragraph gets an arrow marker |
+| `.wide-table` | centers a table at 70% slide width (override with `--wide-table-width`) |
+| `.etable` | fits a regression-table image to the slide |
+| `.columns3070` etc. | column-width presets for `output-location: column` (`3070`, `7030`, `4060`, `6040`) |
+
+R figures are rendered with transparent backgrounds so plots sit directly on the paper-toned slide.
+
+## Migrating decks from v1 of this theme
+
+- **Delete any per-deck MathJax pin.** Decks that carry `html-math-method: {method: mathjax, url: ...mathjax@3...}` in their YAML will override the extension's MathJax v4 + STIX Two setup. Remove the block entirely.
+- Body text moved from weight 300 to 400, headings from Fira Sans to Source Serif, and the teal/red palette to burgundy/slate. Expect decks to look different — deliberately so.
+- Per-deck `<style>` hacks for `.wide-table` can be deleted; it is now a theme class.
+
+## Swapping fonts
+
+Each family is one variable plus one `@font-face` group in `_extensions/clean/clean.scss`, and the woff2 files live in `_extensions/clean/fonts/` (listed under `format-resources` in `_extension.yml`). To swap the code font for, say, [Maple Mono](https://github.com/subframe7536/maple-font): drop in subset woff2 files, point the `@font-face` group at them, and update `$font-mono`. Subsetting recipe (fonttools via uv):
 
 ```bash
-quarto use template grantmcdermott/quarto-revealjs-clean-demo
+uvx --from fonttools --with brotli pyftsubset Font.ttf --flavor=woff2 \
+  --unicodes="U+0000-00FF,U+0100-024F,U+1E00-1EFF,U+2000-206F,U+20A0-20BF,U+2113,U+2122,U+2139,U+2190-21FF,U+2200-22FF,U+2500-257F,U+25A0-25FF,U+2713-2717,U+FEFF,U+FFFD" \
+  --output-file=font-subset.woff2
 ```
 
-## PDF (Typst) version
+## Caveats
 
-The Quarto Reveal.js backend will render HTML slides. This is great for
-interactive content and dynamic responsiveness (e.g., automatically fitting
-whatever display device is being used). However, you may prefer to render your
-slides directly to PDF instead. If so, please take a look at Kazuharu
-Yanagimoto's very nice port of the **clean** theme, which leverages the Typst
-backend: https://github.com/kazuyanagimoto/quarto-clean-typst
+- The `@font-face` URLs assume Quarto's default output layout (`<doc>_files/libs/...` beside the output file). `embed-resources: true` or a custom `lib-dir` will break the relative font paths; if you need those, move the `@font-face` block into an `include-in-header` `<style>` snippet with document-relative URLs.
+- Font files are latin + common-symbol subsets. Extensive non-Latin text will fall back to system fonts.
+
+## Credits
+
+The structure and much of the machinery come from [grantmcdermott/quarto-revealjs-clean](https://github.com/grantmcdermott/quarto-revealjs-clean) (MIT), itself inspired by Kyle Butts' [LaTeX beamer themes](https://github.com/kylebutts/templates). Bundled fonts are licensed under the [SIL Open Font License 1.1](_extensions/clean/fonts/LICENSE-OFL.txt).
