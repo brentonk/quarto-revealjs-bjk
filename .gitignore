@@ -1,5 +1,6 @@
 .DS_Store
 template.html
 template_files/
+/*.woff2
 test-decks/
 .playwright-mcp/

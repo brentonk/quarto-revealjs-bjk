@@ -9,26 +9,22 @@ $accent2: #9a2515;
 $right-arrow: "\2192"; // Unicode character for right arrow
 
 // fonts
+//
+// All fonts are subset woff2 files bundled with the extension and copied
+// beside the output document via `format-resources` in _extension.yml.
+// The compiled theme css lives 5 directories below the output document
+// (<doc>_files/libs/revealjs/dist/theme/), and css url() resolves relative
+// to the stylesheet, hence the climb in $font-path.
+// Swapping any family later = replace the woff2 files + one variable here.
 
-/*
-Note: This theme uses the Roboto font family, which it imports from Google
-  Fonts to ensure consistent weighting in addition to availability. While
-  you can use a local installation of Roboto, this is generally not 
-  recommended since the weighting will likely be wrong (probably too
-  light). OTOH, importing from Google Fonts can cause some issues in
-  certain secure environments due the external CDN (see:
-  https://github.com/grantmcdermott/quarto-revealjs-clean/issues/7). If
-  that's the case for you, simply comment out the `@import url(...)` line
-  below and it will default for the default Sans Serif font on your system
-  (e.g., Helvetica on a Mac). Circling back to the earlier point about
-  preserving consistent font weights, you may also wish to remove "Roboto"
-  from the choice set if the family is installed locally.
-*/
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://iosevka-webfonts.github.io/iosevka/Iosevka.css');
+$font-path: "../../../../.." !default;
+$font-serif: "Source Serif 4";
+$font-sans: "Source Sans 3";
+$font-mono: "Iosevka";
 
-$font-family-sans-serif: "Fira Sans", sans-serif !default;
-$presentation-heading-font: "Fira Sans", sans-serif !default;
+$font-family-sans-serif: $font-sans, sans-serif !default;
+$font-family-monospace: $font-mono, monospace !default;
+$presentation-heading-font: $font-serif, serif !default;
 
 $presentation-heading-color: $jet !default;
 $presentation-heading-font-weight: bolder;
@@ -44,6 +40,60 @@ $selection-bg: #26351c !default;
 
 
 /*-- scss:rules --*/
+
+// Self-hosted webfonts. The text faces are variable fonts (weight range
+// declared below); Iosevka is three static faces with ligatures stripped
+// at the font level.
+
+@font-face {
+  font-family: $font-serif;
+  src: url("#{$font-path}/source-serif-4-roman.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: $font-serif;
+  src: url("#{$font-path}/source-serif-4-italic.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: $font-sans;
+  src: url("#{$font-path}/source-sans-3-roman.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: $font-sans;
+  src: url("#{$font-path}/source-sans-3-italic.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: $font-mono;
+  src: url("#{$font-path}/iosevka-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: $font-mono;
+  src: url("#{$font-path}/iosevka-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: $font-mono;
+  src: url("#{$font-path}/iosevka-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
 
 .reveal a {
   line-height: 1.5em;
@@ -341,12 +391,10 @@ $selection-bg: #26351c !default;
 
 // Code
 .reveal code {
-  font-family: 'Iosevka Web', monospace;
   font-variant-ligatures: none;
 }
 
 .reveal pre code, .reveal pre.sourceCode code, .cell-output-stdout pre code {
-  font-family: 'Iosevka Web', monospace;
   font-variant-ligatures: none;
   font-size: 20px;
 }

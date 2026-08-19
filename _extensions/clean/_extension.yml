@@ -11,3 +11,11 @@ contributes:
       slide-number: true
       date-format: long
       code-line-numbers: false
+      format-resources:
+        - fonts/source-serif-4-roman.woff2
+        - fonts/source-serif-4-italic.woff2
+        - fonts/source-sans-3-roman.woff2
+        - fonts/source-sans-3-italic.woff2
+        - fonts/iosevka-regular.woff2
+        - fonts/iosevka-bold.woff2
+        - fonts/iosevka-italic.woff2
