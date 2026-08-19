@@ -45,43 +45,75 @@ Cross-references
 - `.button` class provides a Beamer-like button, e.g.
 [[Summary]{.button}](#sec-summary)
 
-## Want more?
+Block environments
 
-### See our longer demo slides
+:::{.example}
+The `.example` class marks off worked examples like this one.
+:::
 
-We've deliberarely kept this template lean, to get you up and running as fast as
-possible.
+## Math
 
-We provide a separate
-[demo template](https://github.com/grantmcdermott/quarto-revealjs-clean-demo),
-with more examples for integrating code, tables, figures, etc.
+### Inline and display math should match the text face
 
-  - See the live demo slides
-  [here](https://grantmcdermott.com/quarto-revealjs-clean-demo/template.html).
+Let $\hat\beta = (X'X)^{-1}X'y$ denote the least-squares estimator.
+
+Under the usual assumptions, we have
+
+$$
+\begin{aligned}
+\mathbb{E}[\hat\beta \mid X] &= \beta, \\
+\mathbb{V}[\hat\beta \mid X] &= \sigma^2 (X'X)^{-1}.
+\end{aligned}
+$$
+
+The estimator is consistent: $\hat\beta \overset{p}{\to} \beta$ as $n \to \infty$.
+
+## Tables
+
+### Check digit alignment and hairline rules
+
+| Country | Year | GDP per capita | Growth  |
+|---------|------|---------------:|--------:|
+| France  | 1820 |          1,135 |   0.84% |
+| France  | 1870 |          1,876 |   1.01% |
+| Prussia | 1820 |          1,077 |   0.61% |
+| Prussia | 1870 |          1,839 |   1.08% |
+| UK      | 1820 |          1,706 |   0.51% |
+| UK      | 1870 |          3,190 |   1.26% |
+
+: Made-up numbers in the style of Maddison {.striped-off}
+
+## Figures
+
+```{r}
+#| echo: false
+#| message: false
+#| fig-cap: "A ggplot figure with a caption."
+#| fig-width: 7
+#| fig-height: 3.5
+library("ggplot2")
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE) +
+  labs(x = "Weight (1000 lbs)", y = "Miles per gallon")
+```
 
 ## Summary {#sec-summary}
 
-### A minimalist and elegant presentation theme
+### A minimalist theme for academic slides
 
-The Quarto reveal.js clean theme aims to be a minimalist and elegant presention
-theme. Here are some options to get you started:
+This is `quarto-revealjs-bjk`, Brenton Kenkel's fork of Grant McDermott's [clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean).
 
 Add the theme to an existing project.
 
 ```{.bash}
-quarto install extension grantmcdermott/quarto-revealjs-clean
+quarto install extension brentonk/quarto-revealjs-bjk
 ```
 
-... or, create a new project using this slide deck as a lean template.
+... or, create a new project using this slide deck as a template.
 
 ```{.bash}
-quarto use template grantmcdermott/quarto-revealjs-clean
-```
-
-... or, create a new project using the demo slide deck as a full template.
-
-```{.bash}
-quarto use template grantmcdermott/quarto-revealjs-clean-demo
+quarto use template brentonk/quarto-revealjs-bjk
 ```
 
 ## R code
