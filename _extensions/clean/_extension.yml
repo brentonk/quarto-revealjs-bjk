@@ -11,7 +11,14 @@ contributes:
       slide-number: true
       date-format: long
       code-line-numbers: false
+      html-math-method:
+        method: mathjax
+        url: "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
+      include-before-body:
+        - text: |
+            <script src="mathjax-config.js"></script>
       format-resources:
+        - mathjax-config.js
         - fonts/source-serif-4-roman.woff2
         - fonts/source-serif-4-italic.woff2
         - fonts/source-sans-3-roman.woff2
