@@ -11,6 +11,12 @@ contributes:
       slide-number: true
       date-format: long
       code-line-numbers: false
+      # Transparent R figure backgrounds so plots sit directly on the
+      # paper-toned slide background instead of in a white box
+      knitr:
+        opts_chunk:
+          dev.args:
+            bg: transparent
       html-math-method:
         method: mathjax
         url: "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"

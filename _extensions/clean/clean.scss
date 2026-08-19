@@ -1,14 +1,27 @@
 /*-- scss:defaults --*/
 
-// Custom colours and variables
+// ---------------------------------------------------------------------------
+// 01 · Palette
+//
+// Two chromatic roles on a warm neutral ground: $accent (emphasis — alerts,
+// links, h4) and $secondary (structure — subtitles, h3, list markers).
+// ---------------------------------------------------------------------------
 
-$jet: #131516;
-$accent: #107895;
-$accent2: #9a2515;
-// $accent2: #e64173;
-$right-arrow: "\2192"; // Unicode character for right arrow
+$paper: #faf8f4; // slide background
+$ink: #1c1a17; // body text
+$accent: #7b2d26; // deep burgundy — emphasis
+$secondary: #46586a; // muted slate — structure
 
-// fonts
+$gray-600: #6f6a63; // captions, dates, affiliations
+$gray-500: #8a857d; // slide numbers
+$gray-300: #ddd8d0; // table rules, hairlines
+
+$code-bg: #f2eee7; // code-block tint (darkened paper)
+
+$right-arrow: "\2192";
+
+// ---------------------------------------------------------------------------
+// 02 · Type tokens
 //
 // All fonts are subset woff2 files bundled with the extension and copied
 // beside the output document via `format-resources` in _extension.yml.
@@ -16,37 +29,49 @@ $right-arrow: "\2192"; // Unicode character for right arrow
 // (<doc>_files/libs/revealjs/dist/theme/), and css url() resolves relative
 // to the stylesheet, hence the climb in $font-path.
 // Swapping any family later = replace the woff2 files + one variable here.
-
+//
 // Family names deliberately omit the "4"/"3" version suffixes: Quarto
 // interpolates these lists into css custom properties unquoted, and a
 // bare digit token makes the whole font-family declaration invalid.
+// ---------------------------------------------------------------------------
+
 $font-path: "../../../../.." !default;
-$font-serif: "Source Serif";
-$font-sans: "Source Sans";
-$font-mono: "Iosevka";
+$font-serif: "Source Serif"; // display: deck title, slide titles
+$font-sans: "Source Sans"; // text: body, lists, tables, h3/h4
+$font-mono: "Iosevka"; // code
+
+$weight-body: 400;
+$weight-medium: 600;
+$weight-bold: 700;
+
+// ---------------------------------------------------------------------------
+// 04 · Reveal/Quarto variables
+// ---------------------------------------------------------------------------
 
 $font-family-sans-serif: $font-sans, sans-serif !default;
 $font-family-monospace: $font-mono, monospace !default;
 $presentation-heading-font: $font-serif, serif !default;
 
-$presentation-heading-color: $jet !default;
-$presentation-heading-font-weight: bolder;
-//$presentation-heading-line-height: 2;
-//$presentation-block-margin: 28px;
+$body-bg: $paper !default;
+$body-color: $ink !default;
+$link-color: $accent !default;
+
+$presentation-heading-color: $ink !default;
+$presentation-heading-font-weight: $weight-medium;
+$presentation-heading-line-height: 1.15;
 $presentation-font-size-root: 30px;
 
-// colors
-//$body-bg: #f0f1eb !default;
-$body-color: $jet !default;
-$link-color: $accent !default;
-$selection-bg: #26351c !default;
-
+$code-block-bg: $code-bg !default;
 
 /*-- scss:rules --*/
 
-// Self-hosted webfonts. The text faces are variable fonts (weight range
-// declared below); Iosevka is three static faces with ligatures stripped
-// at the font level.
+// ---------------------------------------------------------------------------
+// 03 · Webfonts
+//
+// The text faces are variable fonts (weight range declared below, and
+// Source Serif keeps its optical-size axis); Iosevka is three static faces
+// with ligature features stripped at the font level.
+// ---------------------------------------------------------------------------
 
 @font-face {
   font-family: $font-serif;
@@ -98,130 +123,39 @@ $selection-bg: #26351c !default;
   font-display: swap;
 }
 
-.reveal a {
-  line-height: 1.5em;
-}
+// ---------------------------------------------------------------------------
+// 05 · Base rhythm
+// ---------------------------------------------------------------------------
 
 .reveal p {
-  // font-weight: 300;
-  font-weight: 300;
-  margin-top: 1.25em;
+  font-weight: $weight-body;
+  line-height: 1.45;
+  margin-top: 1.1em;
+  text-wrap: pretty;
 }
 
-// title and headings
-
-#title-slide {
-  text-align: left;
-
-  .title {
-    color: $body-color;
-    font-size: 1.6em;
-    font-weight: 800;
-    margin-bottom: 0;
-  }
-
-  .subtitle {
-    color: $accent;
-    font-style: italic;
-    margin-top: 0em;
-    margin-bottom: 0;
-    font-weight: normal;
-    // font-weight: lighter;
-  }
-
-  .date {
-    color: $body-color;
-    font-style: normal;
-    font-weight: 300;
-  }
-
-  .institute,
-  .quarto-title-author-email {
-    font-style: italic;
-    // font-size: 80%;
-    // color: #7F7F7F;
-  }
-
-  .author,
-  .quarto-title-author-name {
-    color: $body-color;
-    font-weight: 300;
-  }
-
-  .quarto-title-authors {
-    display: flex;
-    justify-content: left;
-    margin-top: 1.25em;
-
-    .quarto-title-author {
-      padding-left: 0em;
-      padding-right: 0em;
-      width: 100%;
-    }
-  }
-
+.reveal ::selection {
+  color: $ink;
+  background: rgba($accent, 0.18);
+  text-shadow: none;
 }
-
-
-.reveal h2 {
-  // font-weight: 350;
-  font-weight: bolder;
-  font-size: 1.4em;
-}
-
-.reveal h3 {
-  color: $accent;
-  font-style: italic;
-  // font-weight: 350;
-  font-weight: normal;
-  font-size: 0.95em;
-}
-
-.reveal h4 {
-  color: $accent2;
-  // font-weight: 350;
-  font-weight: normal;
-  margin-top: 1.25em;
-}
-
-// alerts etc.
-
-.alert {
-  color: $accent2;
-  font-weight: bolder;
-}
-
-.fg {
-  color: var(--col, $jet);
-}
-
-.bg {
-  background-color: var(--col, #fff);
-  padding: 0.1em;
-  border-radius: 5px;
-  display: inline-block;
-}
-
-// lists
-
-// Unordered lists
 
 .reveal ul {
-  // font-weight: 300;
-  font-weight: 300;
+  font-weight: $weight-body;
+  line-height: 1.45;
   padding-left: 16px;
 
   li::marker {
-    color: mix($accent, white, 70%);
+    color: mix($secondary, white, 70%);
   }
 }
 
 .reveal ul ul {
   list-style: none;
 
-  li:before {
+  li::before {
     content: $right-arrow;
-    color: mix($accent, white, 60%);
+    color: mix($secondary, white, 60%);
     display: inline-block;
     width: 1em;
     margin-left: -1em;
@@ -229,49 +163,135 @@ $selection-bg: #26351c !default;
   }
 }
 
-// Ordered lists
-
 .reveal ol {
-  // font-weight: 300;
-  font-weight: 300;
+  font-weight: $weight-body;
+  line-height: 1.45;
   padding-left: 16px;
 
   li::marker {
-    color: $accent;
+    color: $secondary;
   }
 }
 
-// Move "hamburger" menu button to top right
+// ---------------------------------------------------------------------------
+// 06 · Headings
+//
+// h2 is the slide title (serif), h3 the slide subtitle (sans italic, slate),
+// h4 an in-slide header (sans, burgundy).
+// ---------------------------------------------------------------------------
 
-.reveal .slide-menu-button {
-  position: fixed;
-  top: 6px;
-  right: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  pointer-events: none;
+.reveal h2 {
+  font-weight: $weight-medium;
+  font-size: 1.35em;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
-.reveal .slide-menu-button > * {
-  pointer-events: auto;
+.reveal h3 {
+  font-family: $font-sans, sans-serif;
+  color: $secondary;
+  font-style: italic;
+  font-weight: $weight-body;
+  font-size: 0.9em;
+  line-height: 1.3;
 }
 
-
-// Same for chalkboard buttons (with an offset)
-
-.reveal .slide-chalkboard-buttons {
-  position: fixed;
-  top: 12px;
-  right: 24px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  pointer-events: none;
+.reveal h4 {
+  font-family: $font-sans, sans-serif;
+  color: $accent;
+  font-weight: $weight-medium;
+  font-size: 1em;
+  line-height: 1.25;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
 }
 
-.reveal .slide-chalkboard-buttons > * {
-  pointer-events: auto;
+// ---------------------------------------------------------------------------
+// 07 · Title slide
+//
+// Heavier and tighter at the top, quieter and grayer at the bottom,
+// separation by whitespace rather than rules.
+// ---------------------------------------------------------------------------
+
+#title-slide {
+  text-align: left;
+
+  .title {
+    color: $ink;
+    font-size: 1.7em;
+    font-weight: $weight-bold;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 0;
+    text-wrap: balance;
+  }
+
+  .subtitle {
+    font-family: $font-serif, serif;
+    color: $secondary;
+    font-style: italic;
+    font-size: 1.05em;
+    font-weight: $weight-body;
+    line-height: 1.3;
+    margin-top: 0.4em;
+    margin-bottom: 0;
+    text-wrap: balance;
+  }
+
+  .quarto-title-authors {
+    display: flex;
+    justify-content: left;
+    margin-top: 2.5em;
+
+    .quarto-title-author {
+      padding-left: 0;
+      padding-right: 0;
+      width: 100%;
+    }
+  }
+
+  .author,
+  .quarto-title-author-name {
+    color: $ink;
+    font-weight: $weight-medium;
+  }
+
+  .institute,
+  .quarto-title-affiliation,
+  .quarto-title-author-email {
+    font-style: italic;
+    font-size: 0.85em;
+    color: $gray-600;
+    margin-top: 0.1em;
+    margin-bottom: 0;
+  }
+
+  .date {
+    color: $gray-600;
+    font-size: 0.85em;
+    font-weight: $weight-body;
+    margin-top: 1.5em;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 08 · Inline utilities
+// ---------------------------------------------------------------------------
+
+.alert {
+  color: $accent;
+  font-weight: $weight-bold;
+}
+
+.fg {
+  color: var(--col, $ink);
+}
+
+.bg {
+  background-color: var(--col, white);
+  padding: 0.1em;
+  border-radius: 5px;
+  display: inline-block;
 }
 
 // Beamer-style button link environment
@@ -281,7 +301,7 @@ $selection-bg: #26351c !default;
   padding: 6px 12px;
   margin-bottom: 0;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: $weight-body;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
@@ -289,15 +309,15 @@ $selection-bg: #26351c !default;
   cursor: pointer;
   background-color: $accent;
   border: 1px solid $accent;
-  color: #fff !important;
+  color: white !important;
   text-decoration: none;
   border-radius: 4px;
   transition: all 0.2s ease-in-out;
 }
 
 .button:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: darken($accent, 8%);
+  border-color: darken($accent, 8%);
 }
 
 .button::before {
@@ -305,49 +325,150 @@ $selection-bg: #26351c !default;
   margin-right: 5px;
 }
 
-// tables
+// ---------------------------------------------------------------------------
+// 09 · Block environments
+// ---------------------------------------------------------------------------
+
+// Worked examples: each direct paragraph gets an arrow marker.
+div.example {
+  font-size: 0.9em;
+  padding-left: 3ex;
+  padding-right: 3ex;
+  margin-top: 0.5em;
+  color: $secondary;
+
+  > p {
+    margin-top: 0.5em;
+  }
+
+  > p::before {
+    content: $right-arrow;
+    color: $secondary;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    margin-right: 0.5em;
+  }
+}
+
+// Callouts: the extra class outranks Quarto's own
+// `.reveal .slides section div.callout` rule without !important.
+.reveal .slides section div.callout.callout-style-default {
+  font-size: 0.8em;
+  margin-top: 1.6em;
+}
+
+.reveal div.callout.callout-style-default .callout-title {
+  font-size: 115%;
+}
+
+// Recolor note callouts from Quarto's stock blue to the theme's slate.
+// (!important matches the specificity of Quarto's own border rule.)
+.reveal div.callout-note.callout {
+  border-left-color: $secondary !important;
+}
+
+.reveal div.callout.callout-note.callout-style-default .callout-title {
+  background-color: rgba($secondary, 0.07);
+}
+
+.reveal div.callout .callout-icon::before {
+  filter: grayscale(1) opacity(0.6);
+}
+
+// ---------------------------------------------------------------------------
+// 10 · Code
+//
+// Sized at the pre level in em (≈20px at the 30px root) so the ~93-char
+// line width survives any future root-size change. Ligatures are stripped
+// from the font files, but keep the css belt-and-suspenders.
+// ---------------------------------------------------------------------------
+
+.reveal code {
+  font-variant-ligatures: none;
+}
+
+.reveal pre {
+  font-size: 0.66em;
+  line-height: 1.35;
+}
+
+.reveal pre code {
+  font-size: 1em;
+  line-height: inherit;
+}
+
+.reveal .cell-output.cell-output-stdout pre {
+  line-height: 1.3;
+}
+
+.reveal div.sourceCode.cell-code {
+  margin-top: 1.1em;
+}
+
+.reveal div.cell-output.cell-output-stdout {
+  margin-top: 0.4em;
+}
+
+// For when output-location is "column"
+.reveal .column div.cell-output.cell-output-stdout {
+  margin-top: 1.1em;
+}
+
+// ---------------------------------------------------------------------------
+// 11 · Tables
+//
+// Source Sans's figures are tabular-lining by default, so numeric columns
+// align without opt-in; the font-variant is declared anyway as
+// documentation of intent.
+// ---------------------------------------------------------------------------
 
 .reveal table {
-  // height: auto; /* Adjust table width to fit content up to the available slide space */
   margin: auto;
   border-collapse: collapse;
   border-spacing: 0;
   font-size: 0.8em;
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 .reveal table th,
 .reveal table td {
-  border: none; /* Remove internal row lines */
-  padding: .23em; /* Adjust padding as needed */
-  text-align: left; /* Adjust text alignment as needed */
-  font-weight: 300; /* Lighter font weight for main table text */
+  border: none;
+  padding: 0.23em 0.5em;
+  text-align: left;
+  font-weight: $weight-body;
 }
 
-/* Adds a bottom border to the table header row for distinction */
+// Hairline above and below the header row, and closing the table
 .reveal table thead th,
 .reveal .slides table tr:last-child td,
 .reveal .slides table {
-  border-bottom: 2px solid #D3D3D3; /* Dark grey color for the bottom border */
+  border-bottom: 2px solid $gray-300;
 }
 
-/* Make column headers bold */
 .reveal table thead th {
-  font-weight: bold;
+  font-weight: $weight-medium;
 }
 
-/* Styling table captions */
 .reveal table caption {
-  color: #666666; /* Dark grey color for the caption */
-  font-variant: small-caps; /* Use small caps for the caption text */
+  color: $gray-600;
+  font-size: 0.875em;
+  margin-top: 0.4em;
 }
 
-// Special catch for etable environment to ensure these table images
-// don't overflow the slide.
-// See: https://lrberge.github.io/fixest/articles/etable_new_features.html
+// Center a table at a fraction of slide width (override with --wide-table-width)
+.wide-table table {
+  width: var(--wide-table-width, 70%);
+  margin-left: auto;
+  margin-right: auto;
+}
 
+// Special catch for etable regression-table images so they don't overflow
+// the slide. See: https://lrberge.github.io/fixest/articles/etable_new_features.html
 .etable {
   width: 100%;
-  height: calc(100% - 3em); /* Adjust 3em based on the height of your header, if necessary */
+  height: calc(100% - 3em);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -361,11 +482,30 @@ $selection-bg: #26351c !default;
   object-fit: contain;
 }
 
-// Change the relative widths of `output-location: column`.  Usage:
+// ---------------------------------------------------------------------------
+// 12 · Figures
+// ---------------------------------------------------------------------------
+
+.reveal figure figcaption,
+.reveal p.caption {
+  color: $gray-600;
+  font-size: 0.7em;
+  line-height: 1.35;
+  text-align: center;
+  margin-top: 0.4em;
+}
+
+// ---------------------------------------------------------------------------
+// 13 · Layout helpers
+//
+// Relative widths for `output-location: column`. Example usage:
 // ```{python}
 // #| echo: true
 // #| output-location: column
 // #| classes: columns3070
+// <code>
+// ```
+// ---------------------------------------------------------------------------
 
 .reveal .columns3070 > div.column:first-child {
   width: 30%;
@@ -384,7 +524,7 @@ $selection-bg: #26351c !default;
 }
 .reveal .columns4060 div.column:not(:first-child) {
   width: 60%;
-}      
+}
 .reveal .columns6040 > div.column:first-child {
   width: 60%;
 }
@@ -392,56 +532,61 @@ $selection-bg: #26351c !default;
   width: 40%;
 }
 
-// Code
-.reveal code {
-  font-variant-ligatures: none;
+// ---------------------------------------------------------------------------
+// 14 · Chrome
+// ---------------------------------------------------------------------------
+
+// Move "hamburger" menu button to top right
+
+.reveal .slide-menu-button {
+  position: fixed;
+  top: 6px;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  pointer-events: none;
 }
 
-.reveal pre code, .reveal pre.sourceCode code, .cell-output-stdout pre code {
-  font-variant-ligatures: none;
-  font-size: 20px;
+.reveal .slide-menu-button > * {
+  pointer-events: auto;
 }
 
-.reveal .cell-output.cell-output-stdout pre code {
-  line-height: 25px;
+// Same for chalkboard buttons (with an offset)
+
+.reveal .slide-chalkboard-buttons {
+  position: fixed;
+  top: 12px;
+  right: 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  pointer-events: none;
 }
 
-.reveal div.sourceCode.cell-code {
-  margin-top: 1.25em;
+.reveal .slide-chalkboard-buttons > * {
+  pointer-events: auto;
 }
 
-.reveal div.cell-output.cell-output-stdout {
-  margin-top: 0.4em;
+// Logo to the bottom-left
+
+.slide-logo {
+  display: block !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 10px !important;
+  max-width: 150px;
+  max-height: 50px;
+  width: auto !important;
+  color: $body-color !important;
 }
 
-// For when .output-location = "column"
-.reveal .column div.cell-output.cell-output-stdout {
-  margin-top: 1.25em;
-}
+// Enforce slide numbers at bottom-right (needed when a logo is present)
 
-// Callout blocks
-.reveal div.callout.callout-style-default {
-  font-size: 80% !important;
-  margin-top: 2em;
-}
-
-.reveal div.callout.callout-style-default .callout-title {
-  font-size: 115%;
-}
-
-// Custom block styles
-div.example {
-  font-size: 90%;
-  padding-left: 3ex;
-  padding-right: 3ex;
-  margin-top: -0.75em;
-  color: $accent;
-}
-div.example > p:before {
-  content: $right-arrow;
-  color: $accent;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
-  margin-right: 0.5em;
+.slide-number,
+.reveal.has-logo .slide-number {
+  bottom: 6px !important;
+  right: 10px !important;
+  top: unset !important;
+  color: $gray-500 !important;
 }
