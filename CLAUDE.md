@@ -5,7 +5,7 @@ Personal Quarto reveal.js theme (fork of grantmcdermott/quarto-revealjs-clean, h
 ## Hard constraints
 
 - The extension directory must stay `_extensions/clean/` and the format name `clean-revealjs` — course-deck branches (`qps2`, `wasd`) and many existing decks depend on both.
-- Theme classes are API: `.alert`, `.fg`, `.bg`, `.button`, `.example`, `.wide-table`, `.etable`, `.columns3070/.columns7030/.columns4060/.columns6040`. Restyle freely; never rename or drop.
+- Theme classes are API: `.alert`, `.fg`, `.bg`, `.button`, `.example`, `.wide-table`, `.v-center`, `.etable`, `.columns3070/.columns7030/.columns4060/.columns6040`. Restyle freely; never rename or drop.
 - All fonts are self-hosted (subset woff2 in `_extensions/clean/fonts/`, shipped via `format-resources`). Never reintroduce a font CDN — an offline class laptop is the motivating failure. MathJax is the only permitted CDN dependency.
 
 ## Design system (2026)
@@ -22,6 +22,7 @@ All colors, families, and weights are single variables at the top of `clean.scss
 - **Transparent R figures**: `knitr: opts_chunk: dev.args: bg: transparent` in `_extension.yml` only helps R themes with a blank `plot.background` (e.g. cowplot). ggplot's default `theme_gray` paints its own white box — that's what the multiply blend is for.
 - **Callout specificity**: Quarto's compiled rule is `.reveal .slides section div.callout` (0,3,2); the theme wins with an added `.callout-style-default` class, not `!important` (except `border-left-color`, where Quarto's own rule pattern requires it).
 - **Reveal callout markup differs from HTML format**: `.callout > .callout-body > .callout-title`; there is no `.callout-header`. R figures with captions render as a bare `img.r-stretch` directly in the section — no `.cell-output-display` wrapper.
+- **`.v-center`** (title stays top, body centers below): reveal puts an inline `display: block` on the active section, so the flex override needs `!important` — and MUST stay scoped to `.present`, or every slide un-hides at once. The auto-margin sandwich uses `:nth-child(1 of :not(h2, h3))` (skips title + eyebrow) and `:nth-last-child(1 of :not(aside.notes))` (skips speaker notes). Incompatible with `r-stretch` on the same slide.
 
 ## Workflows
 

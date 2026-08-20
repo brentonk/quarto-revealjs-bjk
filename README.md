@@ -46,6 +46,7 @@ date: last-modified
 | `.button` | Beamer-style button link: `[[Appendix]{.button}](#sec-appendix)` |
 | `.example` | worked-example block; each paragraph gets an arrow marker |
 | `.wide-table` | centers a table at 70% slide width (override with `--wide-table-width`) |
+| `.v-center` | slide class (`## Title {.v-center}`): title and eyebrow stay at the top, body centers vertically in the remaining space; don't combine with `r-stretch` |
 | `.etable` | fits a regression-table image to the slide |
 | `.columns3070` etc. | column-width presets for `output-location: column` (`3070`, `7030`, `4060`, `6040`) |
 

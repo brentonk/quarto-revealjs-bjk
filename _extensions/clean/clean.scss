@@ -519,6 +519,30 @@ div.example {
 // ---------------------------------------------------------------------------
 // 13 · Layout helpers
 //
+// .v-center: keep the slide title (and eyebrow h3) at the top, center the
+// body vertically in the remaining space. Usage: `## Title {.v-center}`.
+// Reveal puts an inline `display: block` on the active section, hence the
+// scoped !important — scoping to .present is load-bearing, since a bare
+// !important would un-hide every slide at once. The auto-margin sandwich
+// centers the body block without needing a wrapper div; speaker-note
+// asides are skipped when finding the last element. Avoid combining with
+// r-stretch (reveal's stretch math assumes block flow).
+// ---------------------------------------------------------------------------
+
+.reveal .slides section.v-center.present {
+  display: flex !important;
+  flex-direction: column;
+  height: 100%;
+}
+
+.reveal .slides section.v-center > :nth-child(1 of :not(h2, h3)) {
+  margin-top: auto;
+}
+
+.reveal .slides section.v-center > :nth-last-child(1 of :not(aside.notes)) {
+  margin-bottom: auto;
+}
+
 // Relative widths for `output-location: column`. Example usage:
 // ```{python}
 // #| echo: true

@@ -95,6 +95,16 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
   labs(x = "Weight (1000 lbs)", y = "Miles per gallon")
 ```
 
+## Vertically centered body {.v-center}
+
+### The title stays up top
+
+This slide uses the `.v-center` class.
+The headline and eyebrow stay pinned at the top while the body floats in the middle of the remaining space.
+
+- Works with lists, math, and figures
+- Avoid combining with `r-stretch`
+
 ## Summary {#sec-summary}
 
 ### A minimalist theme for academic slides
