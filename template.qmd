@@ -117,6 +117,13 @@ The estimator is consistent: $\hat\beta \overset{p}{\to} \beta$ as $n \to \infty
 
 : Made-up numbers in the style of Maddison {.striped-off}
 
+# A section heading
+
+Everything from here on sits in a vertical stack, which is what a `#`
+heading creates.
+Figures must still blend and `.invert-colors` must still bleed to the
+slide edges inside one.
+
 ## Figures
 
 ```{r}

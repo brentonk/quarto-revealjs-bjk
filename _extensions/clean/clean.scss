@@ -574,7 +574,16 @@ div.example {
 // cannot blend with the page background, only with its own ancestors.
 // Sections with custom reveal backgrounds are excluded so those still
 // show through; their images simply don't blend (status quo).
-.reveal .slides section:not([data-background-color]):not([data-background-image]) {
+//
+// `.stack` is excluded because it is not a slide: a `#` heading wraps its
+// `##` slides in one, and being full-slide-sized it would paint paper over
+// any custom ground behind its children — a `background-color=` slide or
+// an `.invert-colors` one would show only a band the height of its own
+// content. Each slide inside a stack paints its own paper, so the blend
+// backing survives.
+.reveal
+  .slides
+  section:not(.stack):not([data-background-color]):not([data-background-image]) {
   background-color: $paper;
 }
 
@@ -624,11 +633,14 @@ div.example {
 // Both are painted rather than making the section transparent: same color,
 // seamless join, and nothing depends on stacking order.
 //
-// The section rule repeats the two :not() guards from section 12: they
-// lift it to (0,5,1), just past that rule's (0,4,1) — attribute selectors
-// inside :not() count toward specificity — while still standing aside if a
-// slide also carries its own `background-color=`.
-.reveal .slides section.invert-colors:not([data-background-color]):not([data-background-image]) {
+// The section rule repeats section 12's three :not() guards, which lifts
+// it to (0,6,1) against that rule's (0,5,1) — selectors inside :not()
+// count toward specificity — so it wins on specificity rather than source
+// order, while still standing aside if a slide also carries its own
+// `background-color=`.
+.reveal
+  .slides
+  section.invert-colors:not(.stack):not([data-background-color]):not([data-background-image]) {
   background-color: $invert-bg;
 }
 
