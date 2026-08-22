@@ -48,6 +48,7 @@ date: last-modified
 | `.tight` | drops the inter-item spacing from a list. Wrap one list in `::: {.tight}` or apply to a whole slide (`## Title {.tight}`); set `--tight-list-spacing` for something between tight and the default |
 | `.wide-table` | centers a table at 70% slide width (override with `--wide-table-width`) |
 | `.v-center` | slide class (`## Title {.v-center}`): title and eyebrow stay at the top, body centers vertically in the remaining space; don't combine with `r-stretch` |
+| `.invert-colors` | slide class: ink ground, paper text, for section dividers and closing slides. Pair with reveal's `.center` (which centers the whole slide, title included) for `## Questions? {.center .invert-colors}`. Code blocks keep their light ground |
 | `.etable` | fits a regression-table image to the slide |
 | `.columns3070` etc. | column-width presets for `output-location: column` (`3070`, `7030`, `4060`, `6040`) |
 

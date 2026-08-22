@@ -142,6 +142,20 @@ The headline and eyebrow stay pinned at the top while the body floats in the mid
 - Works with lists, math, and figures
 - Avoid combining with `r-stretch`
 
+## Inverted colors {.invert-colors}
+
+### Ink ground, paper text
+
+This slide uses the `.invert-colors` class.
+Pair it with `.center` for a section divider or a closing slide.
+
+- List markers, [links](https://quarto.org), and [alerts]{.alert} all keep their contrast
+- Combine as `## Questions? {.center .invert-colors}`
+
+## Questions? {.center .invert-colors}
+
+The closing slide: `.center` for the vertical centering, `.invert-colors` for the ground.
+
 ## Summary {#sec-summary}
 
 ### A minimalist theme for academic slides

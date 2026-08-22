@@ -18,6 +18,16 @@ $gray-300: #ddd8d0; // table rules, hairlines
 
 $code-bg: #f2eee7; // code-block tint (darkened paper)
 
+// Inverted slides (`.invert-colors`). Ground and text simply swap; the
+// chromatic roles cannot, since $accent and $secondary were picked against
+// paper and go muddy on ink, so each is remixed toward $paper until it
+// clears roughly 5:1 against the dark ground.
+$invert-bg: $ink; // inverted slide ground
+$invert-fg: $paper; // inverted slide text
+$invert-accent: mix($accent, $paper, 55%); // emphasis, links, h4
+$invert-secondary: mix($secondary, $paper, 55%); // list markers, arrows
+$invert-muted: mix($paper, $ink, 65%); // eyebrows, captions, slide number
+
 $right-arrow: "\2192";
 
 // ---------------------------------------------------------------------------
@@ -597,6 +607,86 @@ div.example {
 
 .reveal .slides section.v-center > :nth-last-child(1 of :not(aside.notes)) {
   margin-bottom: auto;
+}
+
+// .invert-colors: ink ground, paper text, for section dividers and the
+// closing slide. Usage: `## Questions? {.center .invert-colors}`.
+//
+// Reveal's automatic light-on-dark flip keys off a `background-color=`
+// attribute, which this class deliberately does not set, so every color
+// here is explicit.
+//
+// The ground takes two rules. A section only paints its own content box,
+// which is inset from the slide edges and, under .center, no taller than
+// the text — so the section alone would render as a floating band. Reveal
+// copies each slide's class list onto its full-bleed background element,
+// so `.slide-background.invert-colors` covers the rest of the viewport.
+// Both are painted rather than making the section transparent: same color,
+// seamless join, and nothing depends on stacking order.
+//
+// The section rule repeats the two :not() guards from section 12: they
+// lift it to (0,5,1), just past that rule's (0,4,1) — attribute selectors
+// inside :not() count toward specificity — while still standing aside if a
+// slide also carries its own `background-color=`.
+.reveal .slides section.invert-colors:not([data-background-color]):not([data-background-image]) {
+  background-color: $invert-bg;
+}
+
+.reveal .backgrounds .slide-background.invert-colors {
+  background-color: $invert-bg;
+}
+
+.reveal .slides section.invert-colors {
+  color: $invert-fg;
+
+  h1,
+  h2,
+  strong {
+    color: $invert-fg;
+  }
+
+  h3,
+  figure figcaption,
+  p.caption {
+    color: $invert-muted;
+  }
+
+  h4,
+  .alert,
+  a,
+  a:hover {
+    color: $invert-accent;
+  }
+
+  li::marker {
+    color: $invert-secondary;
+  }
+
+  ul ul li::before {
+    color: $invert-secondary;
+  }
+
+  // Inline code only. Its default is reveal's salmon on a $code-bg chip,
+  // which strands a light chip on the dark ground; a translucent well
+  // reads as part of the slide instead. Code blocks are left alone — they
+  // keep the light ground their syntax colors were chosen against.
+  code:not(.sourceCode) {
+    background-color: rgba($invert-fg, 0.1);
+    color: $invert-fg;
+  }
+
+  // Section 12 multiplies images against the slide ground to drop white
+  // plot boxes. Against ink that would crush them to black, so opt out.
+  img {
+    mix-blend-mode: normal;
+  }
+}
+
+// The slide number lives outside the section, so following the active
+// slide's ground takes :has(). Section 14 sets that color with
+// !important, hence the same here; (0,4,1) clears its (0,3,0).
+.reveal:has(section.invert-colors.present) .slide-number {
+  color: $invert-muted !important;
 }
 
 // Relative widths for `output-location: column`. Example usage:
