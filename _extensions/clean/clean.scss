@@ -173,6 +173,32 @@ $code-block-bg: $code-bg !default;
   }
 }
 
+// Description lists: term in medium sans, definitions inset behind a slate
+// hairline (echoing the note-callout border). Consecutive `: ` definitions
+// share one continuous rule, reading as a single group.
+.reveal dl {
+  font-size: 0.85em;
+  line-height: 1.45;
+  margin-top: 1.1em;
+}
+
+.reveal dt {
+  font-weight: $weight-medium;
+  margin-top: 0.75em;
+  margin-bottom: 0.15em;
+}
+
+.reveal dl > dt:first-child {
+  margin-top: 0;
+}
+
+.reveal dd {
+  margin: 0;
+  padding-left: 0.9em;
+  border-left: 3px solid rgba($secondary, 0.35);
+  color: mix($ink, $gray-600, 55%);
+}
+
 // ---------------------------------------------------------------------------
 // 06 · Headings
 //

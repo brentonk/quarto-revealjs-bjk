@@ -48,6 +48,21 @@ Block environments
 The `.example` class marks off worked examples like this one.
 :::
 
+## Description lists
+
+### Terms in medium sans, definitions behind a slate hairline
+
+Pandoc definition-list syntax
+: A term on one line, then `: ` definitions below it.
+
+Consecutive definitions
+: Share one continuous rule,
+: so a run of them
+: reads as a single group.
+
+Links inside definitions
+: Keep the accent color, e.g. <https://quarto.org>.
+
 ## Math
 
 ### Inline and display math should match the text face
