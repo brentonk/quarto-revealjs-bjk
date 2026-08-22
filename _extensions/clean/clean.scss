@@ -180,6 +180,26 @@ $code-block-bg: $code-bg !default;
   }
 }
 
+// Opt-in tight lists. The airy default spacing comes from Quarto, which
+// injects `.reveal .slide ul li, .reveal .slide ol li { margin: 0.4em 0
+// 0.2em }` into an inline <style> in the document head — not from this
+// file, so it cannot be dialed back with a variable here. `.tight` opts a
+// single list (fenced div) or a whole slide out of it; specificity (0,3,1)
+// beats Quarto's (0,2,2), so no !important is needed. Items then sit on
+// the line-height alone; --tight-list-spacing takes an intermediate value.
+//
+//     ::: {.tight}
+//     - one
+//     - two
+//     :::
+//
+//     ## Slide title {.tight}
+.reveal .slide .tight li,
+.reveal .slide.tight li {
+  margin-top: var(--tight-list-spacing, 0);
+  margin-bottom: var(--tight-list-spacing, 0);
+}
+
 // Description lists: term in medium sans, definitions inset behind a slate
 // hairline (echoing the note-callout border). Consecutive `: ` definitions
 // share one continuous rule, reading as a single group.

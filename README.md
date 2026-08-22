@@ -45,6 +45,7 @@ date: last-modified
 | `.bg` | custom background chip: `[text]{.bg style="--col: #123456"}` |
 | `.button` | Beamer-style button link: `[[Appendix]{.button}](#sec-appendix)` |
 | `.example` | worked-example block; each paragraph gets an arrow marker |
+| `.tight` | drops the inter-item spacing from a list. Wrap one list in `::: {.tight}` or apply to a whole slide (`## Title {.tight}`); set `--tight-list-spacing` for something between tight and the default |
 | `.wide-table` | centers a table at 70% slide width (override with `--wide-table-width`) |
 | `.v-center` | slide class (`## Title {.v-center}`): title and eyebrow stay at the top, body centers vertically in the remaining space; don't combine with `r-stretch` |
 | `.etable` | fits a regression-table image to the slide |

@@ -49,6 +49,27 @@ Block environments
 The `.example` class marks off worked examples like this one.
 :::
 
+## Tight lists
+
+### The tight class drops inter-item spacing; default is on the left
+
+:::{.columns}
+:::{.column width="50%"}
+- Default spacing
+- One item
+- Another item
+- A third item
+:::
+:::{.column width="50%"}
+:::{.tight}
+- Tight spacing
+- One item
+- Another item
+- A third item
+:::
+:::
+:::
+
 ## Description lists
 
 ### Terms in medium sans, definitions behind a slate hairline
