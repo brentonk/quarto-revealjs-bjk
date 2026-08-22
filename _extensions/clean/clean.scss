@@ -150,15 +150,22 @@ $code-block-bg: $code-bg !default;
   }
 }
 
+// Sub-items get an arrow in place of a bullet. The li carries the arrow's
+// full footprint as padding and the arrow is pulled back into it, so
+// wrapped lines align under the first line's text (hanging indent).
 .reveal ul ul {
   list-style: none;
+
+  li {
+    padding-left: 1.5em;
+  }
 
   li::before {
     content: $right-arrow;
     color: mix($secondary, white, 60%);
     display: inline-block;
     width: 1em;
-    margin-left: -1em;
+    margin-left: -1.5em;
     margin-right: 0.5em;
   }
 }

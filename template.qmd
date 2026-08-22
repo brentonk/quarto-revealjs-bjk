@@ -18,8 +18,9 @@ date: last-modified
 Here we have some text that may run over several lines of the slide frame,
 depending on how long it is.
 
-- first item 
+- first item
     - A sub item
+    - A much longer sub item whose text runs on far enough to wrap onto a second line, checking that the continuation lines up under the text rather than the arrow
 
 Next, we'll brief review some theme-specific components.
 
