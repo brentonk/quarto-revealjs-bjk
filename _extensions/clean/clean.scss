@@ -150,14 +150,17 @@ $code-block-bg: $code-bg !default;
   }
 }
 
-// Sub-items get an arrow in place of a bullet. The li carries the arrow's
-// full footprint as padding and the arrow is pulled back into it, so
-// wrapped lines align under the first line's text (hanging indent).
+// Sub-items get an arrow in place of a bullet, hanging in the margin.
+// The arrow's three horizontal values sum to zero (-1.5 + 1 + 0.5), so it
+// consumes no inline advance and wrapped lines land on the li content
+// edge, level with the first line. `padding-left` then places that edge —
+// it alone sets how far the sub-item is indented, so keep it at half the
+// arrow's negative pull or the block drifts right by the difference.
 .reveal ul ul {
   list-style: none;
 
   li {
-    padding-left: 1.5em;
+    padding-left: 0.5em;
   }
 
   li::before {
