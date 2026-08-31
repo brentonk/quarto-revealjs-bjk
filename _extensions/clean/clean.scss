@@ -563,6 +563,20 @@ div.example {
   margin-top: 0.4em;
 }
 
+// Two sources of phantom space push a figcaption well below its image:
+// the inline img sits on the text baseline, leaving strut descender space
+// at the bottom of the line box, and reveal's stock `.reveal img` rule
+// adds a block margin inside it. Zeroing both collapses the <p> to the
+// image itself, so figcaption's margin-top is the true image-to-caption
+// gap.
+.reveal figure > p {
+  line-height: 0;
+
+  img {
+    margin-block: 0;
+  }
+}
+
 // Blend slide images onto the paper ground: white x paper = paper, so
 // white plot boxes (e.g. ggplot's default theme_gray) and white scan
 // margins disappear. The transparent dev.args in _extension.yml only
