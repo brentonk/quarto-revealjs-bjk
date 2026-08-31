@@ -23,8 +23,10 @@ contributes:
       include-before-body:
         - text: |
             <script src="mathjax-config.js"></script>
+            <script src="slide-number.js"></script>
       format-resources:
         - mathjax-config.js
+        - slide-number.js
         - fonts/source-serif-4-roman.woff2
         - fonts/source-serif-4-italic.woff2
         - fonts/source-sans-3-roman.woff2

@@ -5,3 +5,4 @@ template_files/
 /mathjax-config.js
 test-decks/
 .playwright-mcp/
+/slide-number.js

@@ -1,6 +1,6 @@
 # quarto-revealjs-bjk
 
-Personal Quarto reveal.js theme (fork of grantmcdermott/quarto-revealjs-clean, heavily diverged as of the 2026 overhaul). The entire theme is `_extensions/clean/clean.scss` plus `_extension.yml`, `mathjax-config.js`, and bundled fonts.
+Personal Quarto reveal.js theme (fork of grantmcdermott/quarto-revealjs-clean, heavily diverged as of the 2026 overhaul). The entire theme is `_extensions/clean/clean.scss` plus `_extension.yml`, `mathjax-config.js`, `slide-number.js` (title slide unnumbered, counting starts at 1 after it), and bundled fonts.
 
 ## Hard constraints
 
