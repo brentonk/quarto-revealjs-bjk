@@ -355,6 +355,41 @@ $code-block-bg: $code-bg !default;
   color: var(--col, $ink);
 }
 
+// Implications/consequences drawn from the surrounding material, as opposed
+// to text stating or justifying it — slate, matching div.example's role.
+// Usage: `- [text]{.implication}`. On a list item whose entire content is
+// the span, the rules below also swap the marker for a leadsto arrow.
+.implication {
+  color: $secondary;
+}
+
+// Leadsto marker for implication list items. Pandoc cannot attach a class
+// to an <li>, so the class rides on the content span and :has() lifts it
+// to the item. No bundled face carries U+21DD (and upstream Source Sans 3
+// lacks it entirely), so the arrow is drawn here: an SVG stroke used as an
+// alpha mask, with background-color supplying the theme color so it can
+// be recolored like any other marker. The zero-sum margin mechanics match
+// the ul ul arrow above (section 05), so text lands at the content edge,
+// level with sibling items; that rule's `content` on sub-items loses to
+// this selector's higher specificity, (0,2,1) over (0,1,3).
+$leadsto-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Cpath d='M4 30C14 16 28 16 40 30S66 44 76 30' fill='none' stroke='white' stroke-width='7' stroke-linecap='round'/%3E%3Cpath d='M76 13l19 17-19 17' fill='none' stroke='white' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+.reveal li:has(> .implication) {
+  list-style: none;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 0.6em;
+    vertical-align: -0.02em;
+    margin-left: -1.5em;
+    margin-right: 0.5em;
+    background-color: $secondary;
+    mask: $leadsto-mask no-repeat center / contain;
+  }
+}
+
 .bg {
   background-color: var(--col, white);
   padding: 0.1em;
@@ -690,6 +725,14 @@ div.example {
 
   ul ul li::before {
     color: $invert-secondary;
+  }
+
+  .implication {
+    color: $invert-secondary;
+  }
+
+  li:has(> .implication)::before {
+    background-color: $invert-secondary;
   }
 
   // Inline code only. Its default is reveal's salmon on a $code-bg chip,

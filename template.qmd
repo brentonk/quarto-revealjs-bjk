@@ -37,6 +37,7 @@ Special classes for emphasis
 - `.alert` class for default emphasis, e.g. [important note]{.alert}.
 - `.fg` class for custom colour, e.g. [important note]{.fg style="--col: #e64173"}.
 - `.bg` class for custom background, e.g. [important note]{.bg style="--col: #e64173"}.
+- [`.implication` class for implications; wrapping a whole list item swaps its bullet for this arrow, even when the text wraps onto a second line of the slide frame]{.implication}
 
 Cross-references
 
@@ -157,6 +158,7 @@ This slide uses the `.invert-colors` class.
 Pair it with `.center` for a section divider or a closing slide.
 
 - List markers, [links](https://quarto.org), and [alerts]{.alert} all keep their contrast
+- [So do `.implication` items and their arrow markers]{.implication}
 - Combine as `## Questions? {.center .invert-colors}`
 
 ## Questions? {.center .invert-colors}
