@@ -36,6 +36,32 @@ author:
 date: last-modified
 ```
 
+## Format defaults
+
+The `clean-revealjs` format sets a few options beyond Quarto's defaults (all overridable per deck):
+
+- **Slide numbers on, title slide excluded**: the title slide shows no number, and counting starts at 1 on the first content slide, displayed as `n/total`
+- **Navigation menu** docked on the left
+- **Long date format** (`date-format: long`)
+- **Code line numbers off** (`code-line-numbers: false`; Quarto's default is on)
+- **Transparent R graphics device** (`dev.args: bg: transparent`), so plots sit directly on the paper-toned slide — see the note on image blending below
+
+## Slide anatomy
+
+Heading levels have distinct roles, so a `###` is not just a smaller `##`:
+
+| Heading | Role |
+|---|---|
+| `#` | section heading — makes its own slide and wraps the following `##` slides in a vertical stack, as usual in Quarto |
+| `##` | slide title: serif, near-black |
+| `###` | slide subtitle, rendered as a tracked-caps gray eyebrow — place it directly under the `##` title |
+| `####` | in-slide header: sans, burgundy, for labeling a block partway down a slide |
+
+Two other structures get theme treatment automatically:
+
+- **Nested lists**: sub-items swap the bullet for a hanging → arrow (`.implication` items get ⇝ instead, at any nesting level — see the classes table below)
+- **Description lists**: Pandoc's `term` / `: definition` syntax renders the term in medium-weight sans with the definitions inset behind a slate hairline; consecutive `: ` definitions share one continuous rule
+
 ## Theme classes
 
 | Class | Effect |
